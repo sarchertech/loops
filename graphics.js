@@ -1,6 +1,12 @@
 class Graphics {
   two = null;
   radius = 50;
+  styles = {
+    family: 'proxima-nova, sans-serif',
+    size: 50,
+    leading: 50,
+    weight: 900
+  };
   nodeCount = 0;
 
   constructor(wrapperElement) {
@@ -17,7 +23,7 @@ class Graphics {
     this.two.clear();
   }
 
-  addNode() {
+  addNode(name) {
     console.log("add graphics to node");
     const x = this.radius + 20 + this.nodeCount * (2 * this.radius + 20);
     const y = this.two.height * 0.5;
@@ -25,8 +31,11 @@ class Graphics {
     circle.fill = '#FF8000';
     circle.stroke = 'orangered';
     circle.linewidth = 5;
-    this.two.update();
 
+    const label = this.two.makeText(name, x, y, this.styles);
+    label.fill = '#2e2e2e';
+
+    this.two.update();
     this.nodeCount++;
   }
 }
